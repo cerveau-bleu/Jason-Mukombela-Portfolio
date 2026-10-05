@@ -1646,8 +1646,8 @@
                 <a id="modalWhatsappBtn" href="https://wa.me/243828121183" target="_blank" rel="noopener noreferrer" class="btn" style="background:#25d366; color:#fff; font-size:0.85rem; flex:1;">
                     <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
                 </a>
-                <button onclick="alert('La fiche technique complète en PDF sera disponible en téléchargement sous peu.')" class="btn btn-primary" style="font-size:0.85rem; flex:1;">
-                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Fiche PDF
+                <button id="modalPdfBtn" type="button" class="btn btn-primary" style="font-size:0.85rem; flex:1; display:none;" aria-label="Ouvrir le PDF du projet">
+                    <i class="fas fa-file-pdf" aria-hidden="true"></i> PDF
                 </button>
             </div>
         </div>
@@ -2136,104 +2136,59 @@
 
     const projects = [
         {
-            title: 'BioGaz Gén - Méthaniseur',
+            title: 'Profilomètre électronique',
+            category: 'rendu',
+            img: 'images projet/projet 1.png',
+            desc: 'Conception d\'un profilomètre électronique destiné au contrôle dimensionnel et à la mesure précise de surfaces et d\'éléments mécaniques. Le projet met en avant la précision, le montage mécanique et la validation du système de mesure.',
+            software: 'SolidWorks 2024',
+            type: 'Rendu 3D HD & Assemblage',
+            duration: '7 Jours',
+            status: 'Validé / Prototype prêt',
+            pdf: 'Descrip_project/Fiche_Profilometre_Surfinex_Jason_Mukombela.pdf'
+        },
+        {
+            title: 'Biodigesteur',
             category: 'rendu',
             img: 'images/bio gaz.jpeg',
-            desc: 'Conception complète d\'un méthaniseur pour la production de biogaz. Le projet inclut l\'assemblage paramétrique des cuves, le système de chauffage, l\'agitateur, le contrôle des interférences et un rendu photoréaliste pour la présentation au client.',
-            software: 'SolidWorks 2024',
-            type: 'Rendu 3D HD & Assemblage',
-            duration: '12 Jours',
-            status: 'Livré / Opérationnel'
-        },
-        {
-            title: 'Extracteur d\'huile de courge',
-            category: 'rendu',
-            img: 'https://static.shuliy.com/wp-content/uploads/2021/04/diesel-engine-type-melon-seed-extractor.webp',
-            desc: 'Conception d\'une presse à vis sans fin pour l\'extraction d\'huile de graines de courge. Le modèle intègre un système de chauffe, un filtre à huile et un contrôleur de température.',
-            software: 'SolidWorks 2024',
-            type: 'Rendu 3D HD & Assemblage',
-            duration: '8 Jours',
-            status: 'Validé / Prototype en cours'
-        },
-        {
-            title: 'Drône design - UAV',
-            category: 'rendu',
-            img: 'https://media.istockphoto.com/id/1295399737/vector/drone-silhouette-vector-design.jpg?s=612x612&w=0&k=20&c=r8a2W4GzdIzPNESsMiLPZskv3jeYkr0P5IBOt6Xci1E=',
-            desc: 'Conception complète d\'un drone à voilure fixe pour la cartographie et la surveillance. Le projet inclut le design du fuselage, des ailes, le système de propulsion et l\'analyse aérodynamique.',
+            desc: 'Modélisation d\'un biodigesteur pour la production de biogaz, incluant cuve, système d\'alimentation, mélange, contrôle thermique et conception fonctionnelle pour un fonctionnement fiable et durable.',
             software: 'SolidWorks 2024',
             type: 'Rendu 3D HD & Assemblage',
             duration: '10 Jours',
-            status: 'En développement'
+            status: 'Livré / Opérationnel',
+            pdf: 'Descrip_project/Fiche_Biodigesteur_Jason_Mukombela.pdf'
         },
         {
-            title: 'Fumoir électrique',
+            title: 'RiverCleaner',
             category: 'rendu',
-            img: 'https://barbecue-co.com/61284-home_default/fumoir-elect-barbecook-otto-v2-inox.webp',
-            desc: 'Conception d\'un fumoir électrique professionnel avec contrôle précis de la température et du flux de fumée. Le projet inclut les plans de fabrication et la nomenclature complète.',
-            software: 'SolidWorks 2024',
-            type: 'Rendu 3D HD & Assemblage',
-            duration: '6 Jours',
-            status: 'Livré'
-        },
-        {
-            title: 'GPM-SI - Groupe motopropulseur',
-            category: 'rendu',
-            img: 'https://gpmco.com/wp-content/uploads/2024/01/pinto-34-render-v2-1-cropped-1024x485.jpg',
-            desc: 'Conception d\'un groupe motopropulseur industriel pour une application de pompage. Le projet comprend la modélisation du moteur, de la pompe, du système de transmission et le dimensionnement des supports.',
-            software: 'SolidWorks 2024',
-            type: 'Rendu 3D HD & Assemblage',
-            duration: '15 Jours',
-            status: 'Livré'
-        },
-        {
-            title: 'HydroSweep - Système de nettoyage',
-            category: 'rendu',
-            img: 'https://www.swellwake.com/cdn/shop/products/HydroSweep-Pro-Safe-Shore-1657823402.jpg?v=1657823404&width=3000',
-            desc: 'Conception d\'un système de nettoyage haute pression pour le nettoyage des coques de bateaux. Le système utilise une pompe à piston, des buses rotatives et un système de filtration.',
+            img: 'images projet/projet 3.png',
+            desc: 'Conception d\'un système de nettoyage de cours d\'eau destiné à la collecte des déchets flottants et à la protection des zones aquatiques. Le projet comprend la structure, le mécanisme de récupération et la configuration du système de traction.',
             software: 'SolidWorks 2024',
             type: 'Rendu 3D HD & Assemblage',
             duration: '9 Jours',
-            status: 'En cours'
+            status: 'En cours de validation',
+            pdf: 'Descrip_project/Fiche_RiverCleaner_Jason_Mukombela.pdf'
         },
         {
-            title: 'IngénieuxSud - Projets humanitaires',
-            category: 'animation',
-            img: 'images/profile.jpg',
-            desc: 'Étude cinématique et calcul par éléments finis (FEA) pour optimiser les structures des projets humanitaires.',
-            software: 'Autodesk Inventor',
-            type: 'Animation Cinématique & FEA',
-            duration: '5 Jours',
-            status: 'Validation technique'
-        },
-        {
-            title: 'Injector - Système d\'injection',
-            category: 'animation',
-            img: 'https://www.shutterstock.com/image-photo/image-diesel-fuel-injector-isolated-260nw-1015553329.jpg',
-            desc: 'Conception d\'un injecteur de carburant haute performance. Le projet inclut la modélisation 3D, l\'analyse de l\'écoulement du fluide et la simulation du mouvement des composants internes.',
-            software: 'Autodesk Inventor',
-            type: 'Animation Cinématique & FEA',
-            duration: '7 Jours',
-            status: 'Validé'
-        },
-        {
-            title: 'SOLIDWORKS Visualize Content',
-            category: 'animation',
-            img: 'https://hawkridgesys.com/wp-content/uploads/solidworks-visualiz-bench-vise-render-3d-perspective-tile.jpg',
-            desc: 'Création de rendus photoréalistes et d\'animations pour la présentation de produits.',
-            software: 'SOLIDWORKS Visualize',
-            type: 'Rendu Photoréaliste',
-            duration: '3 Jours',
-            status: 'Livré'
+            title: 'Unité de production d’alevins',
+            category: 'plan',
+            img: 'images projet/projet 4.png',
+            desc: 'Étude et conception d\'une unité de production d\'alevins intégrant les zones de reproduction, la gestion hydraulique, la ventilation et les besoins de maintenance. Le dossier comprend les vues techniques et les plans d\'exécution.',
+            software: 'AutoCAD / SolidWorks',
+            type: 'Plans d\'Exécution Normés',
+            duration: '12 Jours',
+            status: 'Dossier prêt pour fabrication',
+            pdf: null
         },
         {
             title: 'Couveuse néonatale',
             category: 'plan',
-            img: 'https://us.123rf.com/450wm/seregalsv/seregalsv1904/seregalsv190400181/122886212-le-b%C3%A9b%C3%A9-se-trouve-sous-une-lampe-ultraviolette-avec-la-jaunisse.jpg?ver=6',
+            img: 'images projet/projet 5.jpeg',
             desc: 'Élaboration du dossier technique d\'usinage et d\'assemblage comprenant les vues en coupe, les tolérances ISO H7/g6, la nomenclature complète et les détails des soudures.',
             software: 'AutoCAD / SolidWorks',
             type: 'Plans d\'Exécution Normés',
             duration: '4 Jours',
-            status: 'Dossier Prêt pour Usinage'
+            status: 'Dossier Prêt pour Usinage',
+            pdf: 'Descrip_project/Fiche_Couveuse_Neonatale_Jason_Mukombela.pdf'
         }
     ];
 
@@ -2387,7 +2342,8 @@
                             '${project.duration}', 
                             '${project.status}', 
                             '${project.desc.replace(/'/g, "\\'")}', 
-                            '${project.img}'
+                            '${project.img}',
+                            '${(project.pdf || '').replace(/'/g, "\\'")}'
                         )" aria-label="Voir les détails du projet ${project.title}">Détails du projet</button>
                 </div>
             </div>
@@ -2453,7 +2409,7 @@
         });
     });
 
-    function openModal(title, software, category, duration, status, desc, imgSrc) {
+    function openModal(title, software, category, duration, status, desc, imgSrc, pdfPath = null) {
         document.getElementById('modalTitle').textContent = title;
         document.getElementById('modalSoftware').textContent = software;
         document.getElementById('modalCategory').textContent = category;
@@ -2467,6 +2423,17 @@
         if (whatsappModalBtn) {
             const message = encodeURIComponent(`Bonjour Jason, je suis intéressé par un projet similaire à : ${title}. Pouvez-vous me faire un devis ?`);
             whatsappModalBtn.href = `https://wa.me/243828121183?text=${message}`;
+        }
+
+        const modalPdfBtn = document.getElementById('modalPdfBtn');
+        if (modalPdfBtn) {
+            if (pdfPath) {
+                modalPdfBtn.style.display = 'inline-flex';
+                modalPdfBtn.onclick = () => openPdfModal(pdfPath, title);
+            } else {
+                modalPdfBtn.style.display = 'none';
+                modalPdfBtn.onclick = null;
+            }
         }
         
         document.getElementById('projectModal').classList.add('active');
