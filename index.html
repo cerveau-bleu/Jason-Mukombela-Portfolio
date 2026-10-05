@@ -2139,7 +2139,7 @@
             title: 'Profilomètre électronique',
             category: 'rendu',
             img: 'images projet/projet 1.png',
-            desc: 'Conception d\'un profilomètre électronique destiné au contrôle dimensionnel et à la mesure précise de surfaces et d\'éléments mécaniques. Le projet met en avant la précision, le montage mécanique et la validation du système de mesure.',
+            desc: 'Un profilomètre mobile à acquisition LiDAR en temps réel, développé en équipe et récompensé par le 4e prix à l’Orange Summer Challenge 2025.',
             software: 'SolidWorks / FreeCAD / LiDAR / Raspberry Pi 5',
             type: 'Prototype fonctionnel',
             duration: '5 Mois',
@@ -2150,7 +2150,7 @@
             title: 'Biodigesteur',
             category: 'rendu',
             img: 'images/bio gaz.jpeg',
-            desc: 'Modélisation d\'un biodigesteur pour la production de biogaz, incluant cuve, système d\'alimentation, mélange, contrôle thermique et conception fonctionnelle pour un fonctionnement fiable et durable.',
+            desc: 'Un système de chauffage de biodigesteur dimensionné et modélisé, avec une simulation Fluent des 100 premières secondes du démarrage thermique.',
             software: 'SolidWorks / Python / ANSYS Fluent / LaTeX',
             type: 'Conception & simulation thermique',
             duration: 'TFC / étude académique',
@@ -2161,7 +2161,7 @@
             title: 'RiverCleaner',
             category: 'rendu',
             img: 'images projet/projet 3.png',
-            desc: 'Conception d\'un système de nettoyage de cours d\'eau destiné à la collecte des déchets flottants et à la protection des zones aquatiques. Le projet comprend la structure, le mécanisme de récupération et la configuration du système de traction.',
+            desc: 'Un robot de collecte télécommandé, fabriqué et testé sur l’eau, avec une capacité de 15 kg et une autonomie de 30 à 45 minutes en utilisation continue.',
             software: 'SolidWorks / FreeCAD / Python / Arduino',
             type: 'Prototype de collecte sur eau',
             duration: 'Projet académique 2025',
@@ -2172,9 +2172,9 @@
             title: 'Unité de production d’alevins',
             category: 'plan',
             img: 'images projet/projet 4.png',
-            desc: 'Étude et conception d\'une unité de production d\'alevins intégrant les zones de reproduction, la gestion hydraulique, la ventilation et les besoins de maintenance. Le dossier comprend les vues techniques et les plans d\'exécution.',
+            desc: 'Étude et conception d’une unité de production d’alevins intégrant les zones de reproduction, la gestion hydraulique, la ventilation et les besoins de maintenance.',
             software: 'AutoCAD / SolidWorks',
-            type: 'Conception d\'installation aquacole',
+            type: 'Conception d’installation aquacole',
             duration: 'Étude de conception',
             status: 'Dossier technique en préparation',
             pdf: null
@@ -2183,7 +2183,7 @@
             title: 'Couveuse néonatale',
             category: 'plan',
             img: 'images projet/projet 5.jpeg',
-            desc: 'Élaboration du dossier technique d\'usinage et d\'assemblage comprenant les vues en coupe, les tolérances ISO H7/g6, la nomenclature complète et les détails des soudures.',
+            desc: 'Une étude de couveuse néonatale associant conception CAO et simulation, présentée lors des 2 journées d’exposition PEAK en février 2026.',
             software: 'SolidWorks / Python / Arduino',
             type: 'Conception thermique & simulation',
             duration: '2 Journées / PEAK 2026',
@@ -2254,6 +2254,22 @@
             
             const container = document.getElementById(containerId);
             container.innerHTML = pageItems.map(item => renderFn(item)).join('');
+
+            container.querySelectorAll('.project-details-btn').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const projectData = JSON.parse(button.dataset.project);
+                    openModal(
+                        projectData.title,
+                        projectData.software,
+                        projectData.type,
+                        projectData.duration,
+                        projectData.status,
+                        projectData.desc,
+                        projectData.img,
+                        projectData.pdf || null
+                    );
+                });
+            });
 
             const info = document.getElementById(infoId);
             if (info) {
@@ -2326,6 +2342,17 @@
     }
 
     function renderProjectCard(project) {
+        const projectData = JSON.stringify({
+            title: project.title,
+            software: project.software,
+            type: project.type,
+            duration: project.duration,
+            status: project.status,
+            desc: project.desc,
+            img: project.img,
+            pdf: project.pdf || null
+        }).replace(/"/g, '&quot;');
+
         return `
             <div class="portfolio-card" data-category="${project.category}" role="listitem">
                 <div class="portfolio-img-wrap">
@@ -2334,17 +2361,8 @@
                 <div class="portfolio-body">
                     <h4 class="portfolio-title">${project.title}</h4>
                     <p class="portfolio-desc">${project.desc.substring(0, 80)}${project.desc.length > 80 ? '...' : ''}</p>
-                    <button class="btn btn-primary" style="padding: 8px 14px; font-size:0.78rem; min-height:40px;" 
-                        onclick="openModal(
-                            '${project.title.replace(/'/g, "\\'")}', 
-                            '${project.software}', 
-                            '${project.type}', 
-                            '${project.duration}', 
-                            '${project.status}', 
-                            '${project.desc.replace(/'/g, "\\'")}', 
-                            '${project.img}',
-                            '${(project.pdf || '').replace(/'/g, "\\'")}'
-                        )" aria-label="Voir les détails du projet ${project.title}">Détails du projet</button>
+                    <button class="project-details-btn btn btn-primary" style="padding: 8px 14px; font-size:0.78rem; min-height:40px;" 
+                        data-project='${projectData}' aria-label="Voir les détails du projet ${project.title}">Détails du projet</button>
                 </div>
             </div>
         `;
